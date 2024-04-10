@@ -4,25 +4,28 @@ import { PaginationFirst } from "radix-vue";
 import { DoubleArrowLeftIcon } from "@radix-icons/vue";
 import { cn } from "@/lib/utils";
 
-const props = defineProps({
-  asChild: { type: Boolean, required: false, default: true },
-  as: { type: null, required: false },
-  class: { type: null, required: false },
-});
+const props = defineProps(['asChild', 'as', 'class', 'isFirstPage']);
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props;
 
   return delegated;
 });
+
+const handleClick = () => {
+  navigateTo({
+    path: "/",
+    query: { page: 1 },
+  });
+};
 </script>
 
 <template>
-  <PaginationFirst v-bind="delegatedProps">
+  <PaginationFirst v-bind="delegatedProps" @click="handleClick">
     <Button :class="cn('w-9 h-9 p-0', props.class)" variant="outline">
       <slot>
         <DoubleArrowLeftIcon />
       </slot>
-    </button>
+    </Button>
   </PaginationFirst>
 </template>

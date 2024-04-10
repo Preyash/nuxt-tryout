@@ -11,7 +11,7 @@ const isOpen = ref(false);
     class="w-[350px] space-y-2 bg-gray-300 rounded-lg"
   >
     <CollapsibleTrigger
-      class="cursor-pointer w-full flex justify-between items-center p-4"
+      class="cursor-pointer w-full flex justify-between items-center px-4 py-2"
     >
       <p class="text-lg">Add data</p>
       <div>

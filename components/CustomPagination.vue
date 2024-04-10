@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { toRaw } from 'vue';
-
 const { apidata } = defineProps(['apidata']);
-const { page, per_page, total, total_pages } = apidata;
-
+const { page, limit, total } = apidata;
 </script>
 
 <template>
@@ -14,7 +11,7 @@ const { page, per_page, total, total_pages } = apidata;
     show-edges
   >
     <PaginationList v-slot="{ items }" class="flex items-center gap-1">
-      <PaginationFirst :page="page"/>
+      <PaginationFirst/>
       <PaginationPrev :page="page"/>
 
       <template v-for="(item, index) in items">
@@ -38,7 +35,7 @@ const { page, per_page, total, total_pages } = apidata;
       </template>
 
       <PaginationNext :page="page"/>
-      <PaginationLast :page="page"/>
+      <PaginationLast :apidata="apidata"/>
     </PaginationList>
   </Pagination>
 </template>

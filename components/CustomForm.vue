@@ -3,9 +3,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/toast/use-toast";
 import { defineRule, useForm } from "vee-validate";
-import { ref, defineProps, defineEmits } from "vue";
+import { ref, defineProps, defineEmits, inject } from "vue";
 
-const loading = ref(false);
 
 defineRule("required", (value) => {
   if (!value || !value.length) {
@@ -14,12 +13,12 @@ defineRule("required", (value) => {
   return true;
 });
 
+const loading = ref(false);
 const { toast } = useToast();
-
 const url = "https://dummyapi.io/data/v1/user/create";
-
 const { isOpen } = defineProps(["isOpen"]);
 const emit = defineEmits(["update:isOpen"]);
+const refresh = inject("refresh");
 
 const onSubmit = async (data, { resetForm }) => {
   loading.value = true;
@@ -40,6 +39,7 @@ const onSubmit = async (data, { resetForm }) => {
       loading.value = false;
       resetForm();
       emit("update:isOpen", !isOpen);
+      refresh()
     } else {
       loading.value = false;
       toast({
@@ -70,7 +70,6 @@ const spanClasses = "text-xs font-medium text-destructive";
       <Input type="text" placeholder="email" v-bind="field" />
       <span :class="spanClasses">{{ errors.email }}</span>
     </FormField>
-    <br />
     <Button :loading="loading" type="submit" class="bg-purple-500 p-2"
       >Submit</Button
     >

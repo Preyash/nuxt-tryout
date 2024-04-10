@@ -46,7 +46,7 @@ const handleDelete = async (id) => {
     v-if="loading"
     class="absolute z-10 w-8 h-8 mr-2 text-purple-600 animate-spin"
   />
-  <Table v-if="apidata" class="text-xl">
+  <Table v-if="apidata" class="text-lg">
     <TableHeader>
       <TableRow class="uppercase">
         <TableHead>first_name</TableHead>

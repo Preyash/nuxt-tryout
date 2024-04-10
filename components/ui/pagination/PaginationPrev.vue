@@ -36,6 +36,6 @@ const handleClick = () => {
       <slot>
         <ChevronLeftIcon />
       </slot>
-    </button>
+    </Button>
   </PaginationPrev>
 </template>

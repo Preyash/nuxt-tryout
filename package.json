@@ -12,8 +12,6 @@
   "dependencies": {
     "@internationalized/date": "^3.5.2",
     "@radix-icons/vue": "^1.0.0",
-    "@tanstack/vue-table": "^8.15.3",
-    "@vee-validate/zod": "^4.12.6",
     "@vueuse/core": "^10.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -24,8 +22,7 @@
     "tailwindcss-animate": "^1.0.7",
     "vee-validate": "^4.12.6",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0",
-    "zod": "^3.22.4"
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.4",

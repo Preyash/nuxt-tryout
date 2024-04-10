@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps, ref, defineEmits } from 'vue';
-const { apidata } = defineProps(["apidata"]);
+const { apidata, refresh } = defineProps(["apidata", 'refresh']);
 const loading = ref(false);
 import { ReloadIcon } from "@radix-icons/vue";
 import { toast } from "./ui/toast";
@@ -16,7 +16,7 @@ const handleDelete = async (id) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "app-id": app_id,
+        "app-id": "6614d933c2921c5b50c3adf8",
       },
     });
     if (resp.status.value == "success") {
@@ -25,7 +25,7 @@ const handleDelete = async (id) => {
         title: "Success",
         variant: "success",
       });
-      return resp;
+      refresh()
     } else {
       loading.value = false;
       console.log(resp.error.value.message)

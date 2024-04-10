@@ -3,8 +3,7 @@ import CustomTable from "./components/CustomTable.vue";
 import CustomPagination from "./components/CustomPagination.vue";
 import CustomCollapsible from "./components/CustomCollapsible.vue";
 import Toaster from "@/components/ui/toast/Toaster.vue";
-import { onMounted, watch } from "vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useRuntimeConfig } from "nuxt/app";
 const config = useRuntimeConfig();
 const app_id = config.public.app_id;
@@ -12,29 +11,27 @@ const app_id = config.public.app_id;
 const route = useRoute();
 const loading = ref(false);
 const fetchDataUrl = "https://dummyapi.io/data/v1/user";
+const page = computed(() => route.query.page)
 
-const res = await $fetch(fetchDataUrl, {
-  headers: { "app-id": app_id },
-  query: { ...route.query, page: route.query.page, limit: 10 },
+const res = await useFetch(fetchDataUrl, {
+  headers: { "app-id": "6614d933c2921c5b50c3adf8" },
+  query: { ...route.query, page, limit: 10 },
 });
-const { data } = res
+let { data, pending, error, refresh, execute, status  } = res;
 
-watch(() => route.query, (newValue, oldValue) => {
-  // Your logic here to handle the change in route.query
-  console.log('route.query changed:', newValue);
-});
 </script>
 
 <template>
-  <div
-    v-if="data"
-    class="mx-auto max-w-4xl gap-10 flex flex-col justify-center items-center mt-[100px]"
-  >
-    <CustomCollapsible />
-    <CustomTable :apidata="data" />
-    <CustomPagination :apidata="res" />
+  <div class="mx-auto max-w-4xl">
+    <div
+      v-if="data"
+      class="mx-6 gap-10 flex flex-col justify-center items-center mt-[100px]"
+    >
+      <CustomCollapsible />
+      <CustomTable :apidata="data.data" :refresh="refresh" />
+      <CustomPagination :apidata="data" />
+    </div>
+    <div v-else-if="pending">Loading...</div>
   </div>
-  <div v-else-if="loading">Loading...</div>
-  <!-- <div v-else-if="error">{{ error }}</div> -->
-  <Toaster duration="2000" />
+  <Toaster duration="1500" />
 </template>

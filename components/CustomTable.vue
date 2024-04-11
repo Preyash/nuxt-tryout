@@ -1,12 +1,20 @@
 <script setup>
-import { defineProps, ref, defineEmits } from 'vue';
-const { apidata, refresh } = defineProps(["apidata", 'refresh']);
+import { defineProps, ref, defineEmits } from "vue";
 const loading = ref(false);
 import { ReloadIcon } from "@radix-icons/vue";
 import { toast } from "./ui/toast";
 import { useRuntimeConfig } from "nuxt/app";
 const config = useRuntimeConfig();
 const app_id = config.public.app_id;
+import { inject } from 'vue';
+
+const open = inject('open');
+const { apidata, refresh } = defineProps(["apidata", "refresh"]);
+
+const handleEdit = (item) => {
+  open.value = true;
+  // console.log(item);
+};
 
 const handleDelete = async (id) => {
   loading.value = true;
@@ -25,10 +33,10 @@ const handleDelete = async (id) => {
         title: "Success",
         variant: "success",
       });
-      refresh()
+      refresh();
     } else {
       loading.value = false;
-      console.log(resp.error.value.message)
+      console.log(resp.error.value.message);
       toast({
         title: resp.error.value.message,
         variant: "destructive",
@@ -49,8 +57,8 @@ const handleDelete = async (id) => {
   <Table v-if="apidata" class="text-lg">
     <TableHeader>
       <TableRow class="uppercase">
-        <TableHead>first_name</TableHead>
-        <TableHead>last_name</TableHead>
+        <TableHead>first name</TableHead>
+        <TableHead>last name</TableHead>
         <TableHead class="text-right">action</TableHead>
       </TableRow>
     </TableHeader>
@@ -59,8 +67,8 @@ const handleDelete = async (id) => {
         <TableCell>{{ item.firstName }}</TableCell>
         <TableCell>{{ item.lastName }}</TableCell>
         <TableCell class="text-right space-x-3 text-sm">
-          <Button @click="handleEdit">Edit</button>
-          <Button @click="() => handleDelete(item.id)">Delete</button>
+          <Button @click="() => handleEdit(item)">Edit</Button>
+          <Button @click="() => handleDelete(item.id)">Delete</Button>
         </TableCell>
       </TableRow>
     </TableBody>

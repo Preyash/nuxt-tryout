@@ -22,25 +22,38 @@ const res = await useFetch(fetchDataUrl, {
   query: { ...route.query, page, limit: 10 },
 });
 let { data, pending, error, refresh, execute, status } = res;
-provide("refresh", refresh);
+let open = ref(false);
+provide('open', open);
+provide('refresh', refresh);
 </script>
 
 <template>
   <div class="mx-auto max-w-4xl">
     <div
       v-if="data"
-      class="mx-6 gap-10 flex flex-col justify-center items-center mt-[50px]"
+      class="mx-6 gap-10 flex flex-col justify-center items-center my-[30px]"
     >
       <div class="flex w-full justify-between">
         <div class="relative w-full max-w-sm items-center">
-          <Input id="search" type="text" placeholder="Search..." class="pl-10" />
-          <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+          <Input
+            id="search"
+            type="text"
+            placeholder="Search..."
+            class="pl-10"
+          />
+          <span
+            class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
+          >
             <MagnifyingGlassIcon class="size-6 text-muted-foreground" />
           </span>
         </div>
-        <CustomDialog />
+        <CustomDialog :open="open" />
       </div>
-      <CustomTable :apidata="data.data" :refresh="refresh" />
+      <CustomTable
+        :apidata="data.data"
+        :refresh="refresh"
+      />
+      <!-- :open="handleDialogOpen" -->
       <CustomPagination :apidata="data" />
     </div>
     <div v-else-if="pending">Loading...</div>

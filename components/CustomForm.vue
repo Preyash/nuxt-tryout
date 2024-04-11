@@ -2,8 +2,9 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/toast/use-toast";
-import { defineRule, useForm } from "vee-validate";
-import { ref, defineProps, defineEmits, inject } from "vue";
+import { ErrorMessage, defineRule, useForm } from "vee-validate";
+import { ref, defineProps, defineEmits, inject, onMounted } from "vue";
+const url = "https://dummyapi.io/data/v1/user/create";
 
 defineRule("required", (value) => {
   if (!value || !value.length) {
@@ -14,10 +15,14 @@ defineRule("required", (value) => {
 
 const loading = ref(false);
 const { toast } = useToast();
-const url = "https://dummyapi.io/data/v1/user/create";
-const { open } = defineProps(["open"]);
-// const emit = defineEmits(["update:isOpen"]);
+
 const refresh = inject("refresh");
+const open = inject("open");
+
+const handleClose = () => {
+  open.value = false;
+};
+
 
 const onSubmit = async (data, { resetForm }) => {
   loading.value = true;
@@ -36,9 +41,9 @@ const onSubmit = async (data, { resetForm }) => {
         variant: "success",
       });
       loading.value = false;
+      open.value = false;
       resetForm();
-      open = false;
-      refresh()
+      refresh();
     } else {
       loading.value = false;
       toast({
@@ -56,7 +61,12 @@ const spanClasses = "text-xs font-medium text-destructive";
 </script>
 
 <template>
-  <Form name="form" @submit="onSubmit" v-slot="{ errors }" class="space-y-3">
+  <Form
+    name="form"
+    @submit="onSubmit"
+    v-slot="{ errors }"
+    class="space-y-3"
+  >
     <FormField v-slot="{ field }" rules="required" name="firstName">
       <Input type="text" placeholder="First name" v-bind="field" />
       <span :class="spanClasses">{{ errors.firstName }}</span>
@@ -69,9 +79,14 @@ const spanClasses = "text-xs font-medium text-destructive";
       <Input type="text" placeholder="Email" v-bind="field" />
       <span :class="spanClasses">{{ errors.email }}</span>
     </FormField>
-    <br>
-    <Button :loading="loading" type="submit" class="bg-purple-600 p-2"
-      >Submit</Button
-    >
+    <br />
+    <div class="flex gap-2">
+      <Button :loading="loading" type="submit" class="bg-purple-600 p-2">
+        Submit
+      </Button>
+      <DialogClose as-child @click="handleClose">
+        <Button type="button" variant="secondary"> Close </Button>
+      </DialogClose>
+    </div>
   </Form>
 </template>

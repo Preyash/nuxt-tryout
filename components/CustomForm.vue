@@ -15,8 +15,8 @@ defineRule("required", (value) => {
 const loading = ref(false);
 const { toast } = useToast();
 const url = "https://dummyapi.io/data/v1/user/create";
-const { isOpen } = defineProps(["isOpen"]);
-const emit = defineEmits(["update:isOpen"]);
+const { open } = defineProps(["open"]);
+// const emit = defineEmits(["update:isOpen"]);
 const refresh = inject("refresh");
 
 const onSubmit = async (data, { resetForm }) => {
@@ -37,7 +37,7 @@ const onSubmit = async (data, { resetForm }) => {
       });
       loading.value = false;
       resetForm();
-      emit("update:isOpen", !isOpen);
+      open = false;
       refresh()
     } else {
       loading.value = false;
@@ -56,20 +56,21 @@ const spanClasses = "text-xs font-medium text-destructive";
 </script>
 
 <template>
-  <Form name="form" @submit="onSubmit" v-slot="{ errors }" class="space-y-4">
+  <Form name="form" @submit="onSubmit" v-slot="{ errors }" class="space-y-3">
     <FormField v-slot="{ field }" rules="required" name="firstName">
-      <Input type="text" placeholder="firstName" v-bind="field" />
+      <Input type="text" placeholder="First name" v-bind="field" />
       <span :class="spanClasses">{{ errors.firstName }}</span>
     </FormField>
     <FormField v-slot="{ field }" rules="required" name="lastName">
-      <Input type="text" placeholder="lastName" v-bind="field" />
+      <Input type="text" placeholder="Last name" v-bind="field" />
       <span :class="spanClasses">{{ errors.lastName }}</span>
     </FormField>
     <FormField v-slot="{ field }" rules="required" name="email">
-      <Input type="text" placeholder="email" v-bind="field" />
+      <Input type="text" placeholder="Email" v-bind="field" />
       <span :class="spanClasses">{{ errors.email }}</span>
     </FormField>
-    <Button :loading="loading" type="submit" class="bg-purple-500 p-2"
+    <br>
+    <Button :loading="loading" type="submit" class="bg-purple-600 p-2"
       >Submit</Button
     >
   </Form>

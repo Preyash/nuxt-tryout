@@ -6,6 +6,9 @@ import CustomDialog from "./components/CustomDialog.vue";
 import Toaster from "@/components/ui/toast/Toaster.vue";
 import { ref, computed, provide } from "vue";
 import { useRuntimeConfig } from "nuxt/app";
+import { Input } from "@/components/ui/input";
+import { MagnifyingGlassIcon } from "@radix-icons/vue";
+
 const config = useRuntimeConfig();
 const app_id = config.public.app_id;
 
@@ -28,8 +31,15 @@ provide("refresh", refresh);
       v-if="data"
       class="mx-6 gap-10 flex flex-col justify-center items-center mt-[50px]"
     >
-      <!-- <CustomCollapsible /> -->
-      <CustomDialog />
+      <div class="flex w-full justify-between">
+        <div class="relative w-full max-w-sm items-center">
+          <Input id="search" type="text" placeholder="Search..." class="pl-10" />
+          <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+            <MagnifyingGlassIcon class="size-6 text-muted-foreground" />
+          </span>
+        </div>
+        <CustomDialog />
+      </div>
       <CustomTable :apidata="data.data" :refresh="refresh" />
       <CustomPagination :apidata="data" />
     </div>

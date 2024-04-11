@@ -2,6 +2,7 @@
 import CustomTable from "./components/CustomTable.vue";
 import CustomPagination from "./components/CustomPagination.vue";
 import CustomCollapsible from "./components/CustomCollapsible.vue";
+import CustomDialog from "./components/CustomDialog.vue";
 import Toaster from "@/components/ui/toast/Toaster.vue";
 import { ref, computed, provide } from "vue";
 import { useRuntimeConfig } from "nuxt/app";
@@ -27,7 +28,8 @@ provide("refresh", refresh);
       v-if="data"
       class="mx-6 gap-10 flex flex-col justify-center items-center mt-[50px]"
     >
-      <CustomCollapsible />
+      <!-- <CustomCollapsible /> -->
+      <CustomDialog />
       <CustomTable :apidata="data.data" :refresh="refresh" />
       <CustomPagination :apidata="data" />
     </div>

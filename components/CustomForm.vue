@@ -5,7 +5,6 @@ import { useToast } from "@/components/ui/toast/use-toast";
 import { defineRule, useForm } from "vee-validate";
 import { ref, defineProps, defineEmits, inject } from "vue";
 
-
 defineRule("required", (value) => {
   if (!value || !value.length) {
     return "This field is required";

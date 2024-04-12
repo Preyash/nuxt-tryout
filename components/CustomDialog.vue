@@ -18,7 +18,7 @@ const handleOpen = () => {
     </Button>
     <DialogContent class="sm:max-w-[425px]" :open="open">
       <DialogHeader>
-        <DialogTitle>Add Data</DialogTitle>
+        <DialogTitle>{{ isObjectEmpty(store.formData) ? 'Add Data' : 'Edit Data' }}</DialogTitle>
         <DialogDescription>
           Make changes to your profile here. Click submit when you're done.
         </DialogDescription>

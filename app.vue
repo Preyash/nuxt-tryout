@@ -53,7 +53,6 @@ provide('refresh', refresh);
         :apidata="data.data"
         :refresh="refresh"
       />
-      <!-- :open="handleDialogOpen" -->
       <CustomPagination :apidata="data" />
     </div>
     <div v-else-if="pending">Loading...</div>

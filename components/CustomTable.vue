@@ -6,14 +6,14 @@ import { toast } from "./ui/toast";
 import { useRuntimeConfig } from "nuxt/app";
 const config = useRuntimeConfig();
 const app_id = config.public.app_id;
-import { inject } from 'vue';
+import { inject, provide } from "vue";
 
-const open = inject('open');
+const open = inject("open");
 const { apidata, refresh } = defineProps(["apidata", "refresh"]);
 
 const handleEdit = (item) => {
   open.value = true;
-  // console.log(item);
+  store.formData = item
 };
 
 const handleDelete = async (id) => {
@@ -36,7 +36,6 @@ const handleDelete = async (id) => {
       refresh();
     } else {
       loading.value = false;
-      console.log(resp.error.value.message);
       toast({
         title: resp.error.value.message,
         variant: "destructive",

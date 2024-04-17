@@ -1,13 +1,13 @@
 <script setup>
-import CustomTable from "./components/CustomTable.vue";
-import CustomPagination from "./components/CustomPagination.vue";
-import CustomCollapsible from "./components/CustomCollapsible.vue";
-import CustomDialog from "./components/CustomDialog.vue";
-import Toaster from "@/components/ui/toast/Toaster.vue";
+import CustomTable from "@/components/CustomTable.vue";
+import CustomPagination from "@/components/CustomPagination.vue";
+import CustomCollapsible from "@/components/CustomCollapsible.vue";
+import CustomDialog from "@/components/CustomDialog.vue";
 import { ref, computed, provide } from "vue";
 import { useRuntimeConfig } from "nuxt/app";
 import { Input } from "@/components/ui/input";
 import { MagnifyingGlassIcon } from "@radix-icons/vue";
+import { navigateTo } from "nuxt/app";
 
 const config = useRuntimeConfig();
 const app_id = config.public.app_id;
@@ -23,8 +23,15 @@ const res = await useFetch(fetchDataUrl, {
 });
 let { data, pending, error, refresh, execute, status } = res;
 let open = ref(false);
-provide('open', open);
-provide('refresh', refresh);
+
+const handleClick = (e) => {
+  navigateTo({
+    path: "/vuelidate",
+  });
+};
+
+provide("open", open);
+provide("refresh", refresh);
 </script>
 
 <template>
@@ -35,27 +42,16 @@ provide('refresh', refresh);
     >
       <div class="flex w-full justify-between">
         <div class="relative w-full max-w-sm items-center">
-          <Input
-            id="search"
-            type="text"
-            placeholder="Search..."
-            class="pl-10"
-          />
-          <span
-            class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
-          >
+          <Input id="search" type="text" placeholder="Search..." class="pl-10" />
+          <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
             <MagnifyingGlassIcon class="size-6 text-muted-foreground" />
           </span>
         </div>
         <CustomDialog :open="open" />
       </div>
-      <CustomTable
-        :apidata="data.data"
-        :refresh="refresh"
-      />
+      <CustomTable :apidata="data.data" :refresh="refresh" />
       <CustomPagination :apidata="data" />
     </div>
     <div v-else-if="pending">Loading...</div>
   </div>
-  <Toaster duration="1500" />
 </template>

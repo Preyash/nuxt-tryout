@@ -12,16 +12,20 @@
   "dependencies": {
     "@internationalized/date": "^3.5.2",
     "@radix-icons/vue": "^1.0.0",
+    "@vuelidate/core": "^2.0.3",
+    "@vuelidate/validators": "^2.0.4",
     "@vueuse/core": "^10.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "dotenv": "^16.4.5",
+    "flatpickr": "^4.6.13",
     "nuxt": "^3.11.1",
     "radix-vue": "^1.6.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "vee-validate": "^4.12.6",
     "vue": "^3.4.21",
+    "vue-flatpickr-component": "^11.0.5",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {

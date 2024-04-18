@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { navigateTo } from "nuxt/app";
-
 const { apidata } = defineProps(["apidata"]);
 const { page, limit, total } = apidata;
 

@@ -13,7 +13,7 @@ const { apidata, refresh } = defineProps(["apidata", "refresh"]);
 
 const handleEdit = (item) => {
   open.value = true;
-  store.formData = item
+  store.formData = item;
 };
 
 const handleDelete = async (id) => {
@@ -46,6 +46,15 @@ const handleDelete = async (id) => {
     loading.value = false;
   }
 };
+
+const data = useStateData()
+console.log(data.data.value)
+
+const test = useColor()
+test.value = 'red'
+
+// console.log(test.value)
+
 </script>
 
 <template class="relative px-4">

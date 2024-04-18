@@ -11,7 +11,7 @@ const links = [
 
 <template>
   <div
-    className="sticky top-0 flex items-center justify-between p-6 bg-gray-200"
+    className="sticky top-0 flex items-center justify-between px-6 py-4 bg-gray-200 z-50"
   >
     <h1 className="flex items-center gap-2" href="#">
       <span className="text-lg font-semibold">LOGO</span>

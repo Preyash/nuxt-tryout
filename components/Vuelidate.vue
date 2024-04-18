@@ -66,6 +66,10 @@ function onFileChange(e) {
   image.value = files[0];
   // imageError.value = fileValidator(files[0]);
 }
+
+const test = useColor()
+console.log(test.value)
+
 </script>
 
 <template>

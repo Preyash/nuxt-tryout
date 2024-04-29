@@ -4,7 +4,6 @@ import { helpers, required, minValue, alpha } from "@vuelidate/validators";
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
 import { ref, onMounted } from "vue";
-// import { fileValidator } from "../constants";
 
 let image = ref(null);
 let imageError = ref(null);
@@ -67,9 +66,18 @@ function onFileChange(e) {
   // imageError.value = fileValidator(files[0]);
 }
 
-const test = useColor()
-console.log(test.value)
+const error = ref(null);
+function handleFileInput(file) {
+  const { $v } = useVuelidate();
+  if (!$v.file.$valid) {
+    error.value = "Invalid file";
+  } else {
+    error.value = null;
+  }
+}
 
+const test = useColor();
+console.log(test.value);
 </script>
 
 <template>
@@ -82,6 +90,7 @@ console.log(test.value)
           type="text"
           id="name"
           placeholder="Insert your value"
+          @blur="v$.name.$touch"
         />
         <small class="text-red-500">{{ v$?.name?.$errors[0]?.$message }}</small>
       </div>
@@ -121,6 +130,7 @@ console.log(test.value)
           type="text"
           id="link"
           placeholder="Insert your value"
+          @blur="v$.link.$touch"
         />
         <small class="text-red-500">{{ v$?.link?.$errors[0]?.$message }}</small>
       </div>
@@ -132,13 +142,20 @@ console.log(test.value)
           type="text"
           id="address"
           placeholder="Insert your value"
+          @blur="v$.address.$touch"
         />
         <small class="text-red-500">{{ v$?.address?.$errors[0]?.$message }}</small>
       </div>
 
       <div>
         <label for="region">Region</label>
-        <select name="region" id="region" v-model="form.region" class="h-[42px]">
+        <select
+          name="region"
+          id="region"
+          v-model="form.region"
+          @blur="v$.region.$touch"
+          class="h-[42px]"
+        >
           <option value="one">one</option>
           <option value="two">two</option>
           <option value="three">three</option>
@@ -164,6 +181,7 @@ console.log(test.value)
       <div>
         <label for="status">Description</label>
         <textarea
+          @blur="v$.description.$touch"
           v-model="form.description"
           type="text"
           id="description"

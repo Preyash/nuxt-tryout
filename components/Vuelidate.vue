@@ -5,8 +5,9 @@ import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
 import { ref, onMounted } from "vue";
 
-let image = ref(null);
-let imageError = ref(null);
+const file = ref(null);
+const errors = ref({});
+
 let form = ref({
   status: "Active",
 });
@@ -19,7 +20,6 @@ const rules = {
   address: { required },
   region: { required },
   description: { required },
-  // image: { required },
 };
 
 // onMounted(() => {
@@ -44,40 +44,36 @@ const config = {
 
 const v$ = useVuelidate(rules, form);
 
+const handleFileInput = (event) => {
+  file.value = event.target.files[0];
+  if (file.value.size > 1 * 1024 * 1024) {
+    errors.value.file = "File size is more than 1MB";
+  } else {
+    errors.value.file = "";
+  }
+};
+
 async function handleSubmit() {
   const result = await v$.value.$validate();
-  if (result) {
-    const data = { ...form.value, image: image.value };
+  if (!file.value) {
+    errors.value.file = "Value is required";
+  } else if (file.value.size > 1 * 1024 * 1024) {
+    return false;
+  } else if (result) {
+    const data = { ...form.value, image: file.value };
     console.log(data);
     form.value = {
       status: "Active",
     };
-    image.value = null;
+    file.value = null;
     await v$.value.$reset();
-  }
-}
-
-function onFileChange(e) {
-  var files = e.target.files || e.dataTransfer.files;
-  if (!files.length) {
-    return;
-  }
-  image.value = files[0];
-  // imageError.value = fileValidator(files[0]);
-}
-
-const error = ref(null);
-function handleFileInput(file) {
-  const { $v } = useVuelidate();
-  if (!$v.file.$valid) {
-    error.value = "Invalid file";
   } else {
-    error.value = null;
+    console.log("Form validation failed.");
   }
 }
 
 const test = useColor();
-console.log(test.value);
+// console.log(test.value);
 </script>
 
 <template>
@@ -144,7 +140,9 @@ console.log(test.value);
           placeholder="Insert your value"
           @blur="v$.address.$touch"
         />
-        <small class="text-red-500">{{ v$?.address?.$errors[0]?.$message }}</small>
+        <small class="text-red-500">{{
+          v$?.address?.$errors[0]?.$message
+        }}</small>
       </div>
 
       <div>
@@ -153,29 +151,42 @@ console.log(test.value);
           name="region"
           id="region"
           v-model="form.region"
-          @blur="v$.region.$touch"
           class="h-[42px]"
         >
           <option value="one">one</option>
           <option value="two">two</option>
           <option value="three">three</option>
         </select>
-        <small class="text-red-500">{{ v$?.region?.$errors[0]?.$message }}</small>
+        <small class="text-red-500">{{
+          v$?.region?.$errors[0]?.$message
+        }}</small>
       </div>
 
       <div class="radio">
         <label for="gender">Status</label>
         <section>
           <label
-            ><input type="radio" name="status" value="Active" v-model="form.status" />
+            ><input
+              type="radio"
+              name="status"
+              value="Active"
+              v-model="form.status"
+            />
             Active</label
           >
           <label
-            ><input type="radio" name="status" value="Inactive" v-model="form.status" />
+            ><input
+              type="radio"
+              name="status"
+              value="Inactive"
+              v-model="form.status"
+            />
             Inactive</label
           >
         </section>
-        <small class="text-red-500">{{ v$?.gender?.$errors[0]?.$message }}</small>
+        <small class="text-red-500">{{
+          v$?.gender?.$errors[0]?.$message
+        }}</small>
       </div>
 
       <div>
@@ -188,15 +199,15 @@ console.log(test.value);
           placeholder="Insert your value"
           rows="4"
         />
-        <small class="text-red-500">{{ v$?.description?.$errors[0]?.$message }}</small>
+        <small class="text-red-500">{{
+          v$?.description?.$errors[0]?.$message
+        }}</small>
       </div>
 
       <div>
         <label for="file">Business Image</label>
-        <input id="file" @change="onFileChange" type="file" />
-        <small v-if="!image" class="text-red-500">{{
-          imageError?.value || v$.image?.$errors[0]?.$message
-        }}</small>
+        <input type="file" @input="handleFileInput" />
+        <small v-if="errors.file" class="text-red-500">{{ errors.file }}</small>
       </div>
     </main>
     <br />

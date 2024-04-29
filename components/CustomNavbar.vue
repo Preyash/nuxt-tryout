@@ -6,6 +6,7 @@ import { HamburgerMenuIcon } from "@radix-icons/vue";
 const links = [
   { id: 1, href: "/", text: "Home" },
   { id: 2, href: "/vuelidate", text: "Vuelidate" },
+  { id: 2, href: "/test", text: "Test" },
 ];
 </script>
 
@@ -16,7 +17,7 @@ const links = [
     <h1 className="flex items-center gap-2" href="#">
       <span className="text-lg font-semibold">LOGO</span>
     </h1>
-    <div className="hidden md:flex gap-4">
+    <div className="hidden md:flex flex-row gap-4">
       <div v-for="link in links" :key="link.id">
         <NuxtLink
           className="text-lg font-medium hover:underline underline-offset-4"

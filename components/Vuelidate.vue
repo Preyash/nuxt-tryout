@@ -86,6 +86,7 @@ const test = useColor();
           type="text"
           id="name"
           placeholder="Insert your value"
+          @blur="v$.name.$touch"
         />
         <small class="text-red-500">{{ v$?.name?.$errors[0]?.$message }}</small>
       </div>
@@ -125,6 +126,7 @@ const test = useColor();
           type="text"
           id="link"
           placeholder="Insert your value"
+          @blur="v$.link.$touch"
         />
         <small class="text-red-500">{{ v$?.link?.$errors[0]?.$message }}</small>
       </div>
@@ -136,6 +138,7 @@ const test = useColor();
           type="text"
           id="address"
           placeholder="Insert your value"
+          @blur="v$.address.$touch"
         />
         <small class="text-red-500">{{
           v$?.address?.$errors[0]?.$message
@@ -189,6 +192,7 @@ const test = useColor();
       <div>
         <label for="status">Description</label>
         <textarea
+          @blur="v$.description.$touch"
           v-model="form.description"
           type="text"
           id="description"

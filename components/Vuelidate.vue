@@ -1,6 +1,12 @@
 <script setup>
 import { useVuelidate } from "@vuelidate/core";
-import { helpers, required, minValue, alpha, maxLength } from "@vuelidate/validators";
+import {
+  helpers,
+  required,
+  minValue,
+  alpha,
+  maxLength,
+} from "@vuelidate/validators";
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
 import { ref, onMounted } from "vue";
@@ -13,7 +19,11 @@ let form = ref({
 });
 
 const rules = {
-  name: { required, alpha, maxLengthValue: maxLength(5) },
+  name: {
+    required: helpers.withMessage(`Business Name is required`, required),
+    alpha,
+    maxLengthValue: maxLength(5),
+  },
   operation_start: { required },
   operation_end: { required },
   link: { required },

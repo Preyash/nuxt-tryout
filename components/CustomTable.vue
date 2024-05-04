@@ -48,7 +48,7 @@ const handleDelete = async (id) => {
 };
 
 const data = useStateData()
-console.log(data.data.value)
+// console.log(data.data.value)
 
 const test = useColor()
 test.value = 'red'

@@ -6,7 +6,6 @@ import { HamburgerMenuIcon } from "@radix-icons/vue";
 const links = [
   { id: 1, href: "/", text: "Home" },
   { id: 2, href: "/vuelidate", text: "Vuelidate" },
-  { id: 2, href: "/test", text: "Test" },
 ];
 </script>
 

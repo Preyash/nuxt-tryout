@@ -20,7 +20,6 @@
     "clsx": "^2.1.0",
     "dotenv": "^16.4.5",
     "flatpickr": "^4.6.13",
-    "nuxt": "^3.11.1",
     "radix-vue": "^1.6.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
@@ -31,6 +30,7 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "nuxt": "^3.11.2",
     "shadcn-nuxt": "^0.10.2"
   }
 }

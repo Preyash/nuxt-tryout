@@ -67,4 +67,23 @@
     --ring: 212.7 26.8% 83.9%;
   }
 }
- 
+
+.radio label {
+  display: flex;
+  place-items: center;
+}
+.radio section {
+  display: flex;
+  gap: 12px;
+}
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+[role="alert"] {
+  color: rgb(240, 77, 77);
+  font-size: 12px;
+}
+

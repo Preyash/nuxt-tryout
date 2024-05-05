@@ -12,6 +12,8 @@
   "dependencies": {
     "@internationalized/date": "^3.5.2",
     "@radix-icons/vue": "^1.0.0",
+    "@vee-validate/nuxt": "^4.12.6",
+    "@vee-validate/rules": "^4.12.6",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "@vueuse/core": "^10.9.0",

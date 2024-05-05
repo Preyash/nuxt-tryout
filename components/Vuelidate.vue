@@ -22,7 +22,7 @@ const rules = {
   name: {
     required: helpers.withMessage(`Business Name is required`, required),
     alpha,
-    maxLengthValue: maxLength(5),
+    maxLength: maxLength(5),
   },
   operation_start: { required },
   operation_end: { required },
@@ -82,11 +82,18 @@ async function handleSubmit() {
   }
 }
 
+// useVuelidateBlur(v$, Object.keys(rules));
+
 const test = useColor();
 // console.log(test.value);
 </script>
 
 <template>
+  <h1 class="text-center">
+    If you wanna save 250kb then use "vuelidate", but boilerplate is bit more compared to "vee-validate".
+  </h1>
+  <br />
+  <br />
   <form @submit.prevent="handleSubmit">
     <main class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
       <div>
@@ -108,6 +115,7 @@ const test = useColor();
             <flat-pickr
               :config="config"
               class="form-control"
+              id="operation_start"
               v-model="form.operation_start"
               placeholder="Start time"
             />
@@ -119,6 +127,7 @@ const test = useColor();
             <flat-pickr
               :config="config"
               class="form-control"
+              id="operation_end"
               v-model="form.operation_end"
               placeholder="End time"
             />
@@ -225,18 +234,3 @@ const test = useColor();
   </form>
 </template>
 
-<style scope>
-.radio label {
-  display: flex;
-  place-items: center;
-}
-.radio section {
-  display: flex;
-  gap: 12px;
-}
-label {
-  font-size: 14px;
-  margin-bottom: 5px;
-  display: block;
-}
-</style>

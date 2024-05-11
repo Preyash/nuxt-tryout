@@ -1,18 +1,8 @@
 <script setup>
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
-import { useForm } from "vee-validate";
 
-let apiData = {
-  status: "Inactive",
-  name: "Jane Doe",
-  operation_start: "9:00 AM",
-  operation_end: "5:00 PM",
-  link: "example.com",
-  address: "123 Street",
-  region: "one",
-  description: "Lorem ipsum dolor sit amet",
-};
+const { apiData } = defineProps(["apiData"]);
 
 const config = {
   enableTime: true,
@@ -37,25 +27,26 @@ let status = ref("Active");
 let fileInput = ref(null);
 
 function onSubmit(values, { resetForm }) {
-  console.log(values); 
+  console.log(values);
   fileInput.value = null;
   resetForm();
 }
 
-const { resetForm } = useForm();
-
-onMounted(() => {
-  resetForm({ values: apiData });
-});
+// onMounted(() => {
+//   setValues(apiData);
+// });
 </script>
 
 <template>
-  <Form @submit="onSubmit" :validation-schema="schema">
+  <Form
+    @submit="onSubmit"
+    :validation-schema="schema"
+    :initial-values="apiData || {}"
+  >
     <main class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
       <div>
         <label>Business Name</label>
         <Field id="name" label="Business Name" name="name" />
-        <!-- <Field name="links.twitter" type="url" /> -->
         <ErrorMessage name="name" />
       </div>
 
@@ -113,8 +104,10 @@ onMounted(() => {
       <div>
         <label>Status</label>
         <div class="h-[42px]">
-          <Field name="status" type="radio" value="Active" v-model="status" /> Active
-          <Field name="status" type="radio" value="Inactive" v-model="status" /> Inactive
+          <Field name="status" type="radio" value="Active" v-model="status" />
+          Active
+          <Field name="status" type="radio" value="Inactive" v-model="status" />
+          Inactive
         </div>
         <ErrorMessage name="status" />
       </div>

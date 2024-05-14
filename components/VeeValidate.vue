@@ -2,7 +2,7 @@
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
 
-const { apiData } = defineProps(["apiData"]);
+// const { apiData } = defineProps(["apiData"]);
 
 const config = {
   enableTime: true,

@@ -36,14 +36,27 @@ provide("refresh", refresh);
 
 <template>
   <div class="mx-auto max-w-4xl">
+    <div class="flex justify-center">
+      <Button @click="push.success('Something good has been pushed!')">
+        Test "Notivue" notification lib
+      </Button>
+    </div>
+
     <div
       v-if="data"
       class="mx-6 gap-10 flex flex-col justify-center items-center my-[30px]"
     >
       <div class="flex w-full justify-between">
         <div class="relative w-full max-w-sm items-center">
-          <Input id="search" type="text" placeholder="Search..." class="pl-10" />
-          <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+          <Input
+            id="search"
+            type="text"
+            placeholder="Search..."
+            class="pl-10"
+          />
+          <span
+            class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
+          >
             <MagnifyingGlassIcon class="size-6 text-muted-foreground" />
           </span>
         </div>

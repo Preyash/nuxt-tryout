@@ -7,12 +7,18 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "@vee-validate/nuxt",
     "notivue/nuxt",
+    '@unocss/nuxt',
   ],
   css: [
     'notivue/notification.css',
     'notivue/animations.css',
     'notivue/notification-progress.css'
   ],
+  unocss: {
+    attributify: true,
+    icons: true,
+    components: true,
+  },
   notivue: {
     position: 'bottom-right',
     limit: 4,

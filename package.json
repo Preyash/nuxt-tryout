@@ -32,8 +32,10 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.11.4",
     "nuxt": "^3.11.2",
-    "shadcn-nuxt": "^0.10.2"
+    "shadcn-nuxt": "^0.10.2",
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "@unocss/nuxt": "^0.60.3",
+    "unocss": "^0.60.3"
   }
 }

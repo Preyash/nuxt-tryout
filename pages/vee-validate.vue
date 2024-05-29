@@ -18,6 +18,7 @@ let apiData = {
 </script>
 
 <template>
+  <Link rel="stylesheet" href="https://unpkg.com/chota@latest" />
   <VeeValidate :apiData="apiData"/>
 </template>
   

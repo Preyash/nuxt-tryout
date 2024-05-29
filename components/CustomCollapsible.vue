@@ -23,4 +23,4 @@ const isOpen = ref(false);
       <CustomForm :isOpen="isOpen" @update:isOpen="isOpen = $event" />
     </CollapsibleContent>
   </Collapsible>
-</template>
+</template> 

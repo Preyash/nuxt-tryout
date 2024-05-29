@@ -40,14 +40,41 @@ provide("refresh", refresh);
 
 <template>
   <div class="mx-auto max-w-4xl">
+    <main class="py-20 px-12 text-center">
+      <span text="blue 5xl hover:red" cursor="default">UnoCSS tryout</span>
+      <br />
+      <div op30 text-lg fw300 m1>The instant on-demand Atomic CSS engine.</div>
+      <div m2 flex justify-center text-2xl op30 hover="op80">
+        <a  
+          i-carbon-logo-github
+          text-inherit
+          href="https://github.com/unocss/unocss"
+          target="_blank"
+        ></a>
+      </div>
+    </main>
+
+    <div class="flex justify-center">
+      <Button @click="push.success('Something good has been pushed!')">
+        Test "Notivue" notification lib
+      </Button>
+    </div>
+
     <div
       v-if="data"
       class="mx-6 gap-10 flex flex-col justify-center items-center my-[30px]"
     >
       <div class="flex w-full justify-between">
         <div class="relative w-full max-w-sm items-center">
-          <Input id="search" type="text" placeholder="Search..." class="pl-10" />
-          <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+          <Input
+            id="search"
+            type="text"
+            placeholder="Search..."
+            class="pl-10"
+          />
+          <span
+            class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
+          >
             <MagnifyingGlassIcon class="size-6 text-muted-foreground" />
           </span>
         </div>

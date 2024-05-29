@@ -38,6 +38,7 @@ onMounted(() => {
 });
 
 const onSubmit = async (data, { resetForm }) => {
+  console.log("first");
   loading.value = true;
   try {
     let resp;
@@ -88,7 +89,13 @@ const spanClasses = "text-xs font-medium text-destructive";
 </script>
 
 <template>
-  <Form name="form" ref="myForm" @submit="onSubmit" v-slot="{ errors }" class="space-y-3">
+  <Form
+    name="form"
+    ref="myForm"
+    @submit="onSubmit"
+    v-slot="{ errors }"
+    class="space-y-3"
+  >
     <FormField
       v-slot="{ field }"
       rules="required"
@@ -109,7 +116,9 @@ const spanClasses = "text-xs font-medium text-destructive";
     </FormField>
     <br />
     <div class="flex gap-2">
-      <Button :loading="loading" type="submit" class="bg-purple-600 p-2"> Submit </Button>
+      <Button :loading="loading" type="submit" class="bg-purple-600 p-2">
+        Submit
+      </Button>
       <DialogClose as-child @click="handleClose">
         <Button type="button" variant="secondary"> Close </Button>
       </DialogClose>

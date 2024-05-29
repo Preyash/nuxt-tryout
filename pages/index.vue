@@ -32,6 +32,10 @@ const handleClick = (e) => {
 
 provide("open", open);
 provide("refresh", refresh);
+
+// definePageMeta({
+//   middleware: ["auth"],
+// });
 </script>
 
 <template>

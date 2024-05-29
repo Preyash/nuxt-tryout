@@ -10,6 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@egjs/flicking-plugins": "^4.7.1",
+    "@egjs/vue3-flicking": "^4.11.2",
     "@internationalized/date": "^3.5.2",
     "@radix-icons/vue": "^1.0.0",
     "@vee-validate/nuxt": "^4.12.6",
@@ -21,18 +23,23 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "dotenv": "^16.4.5",
+    "embla-carousel-vue": "^8.1.3",
     "flatpickr": "^4.6.13",
+    "hooper": "^0.3.4",
     "radix-vue": "^1.6.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "vee-validate": "^4.12.6",
     "vue": "^3.4.21",
     "vue-flatpickr-component": "^11.0.5",
-    "vue-router": "^4.3.0"
+    "vue-flickity": "^1.2.1",
+    "vue-router": "^4.3.0",
+    "vuerollr": "^2.0.3"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.4",
     "nuxt": "^3.11.2",
-    "shadcn-nuxt": "^0.10.2"
+    "shadcn-nuxt": "^0.10.2",
+    "vue3-carousel-nuxt": "^1.1.1"
   }
 }

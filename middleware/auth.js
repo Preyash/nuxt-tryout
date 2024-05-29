@@ -5,10 +5,10 @@ export default defineNuxtRouteMiddleware((to, from) => {
     return abortNavigation()
   }
 
-  if (!isLoggedIn) {
-    return navigateTo('/login');
-  } else {
+  if (isLoggedIn) {
     return navigateTo('/');
+  } else {
+    return navigateTo('/login');
   }
 
   // if (to.path !== '/') {

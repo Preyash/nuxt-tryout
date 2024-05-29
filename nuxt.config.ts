@@ -2,10 +2,15 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt", "@vee-validate/nuxt"],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    'shadcn-nuxt',
+    '@vee-validate/nuxt',
+    "vue3-carousel-nuxt"
+  ],
   shadcn: {
-    prefix: "",
-    componentDir: "./components/ui",
+    prefix: '',
+    componentDir: './components/ui',
   },
   veeValidate: {
     autoImports: true,
@@ -15,4 +20,16 @@ export default defineNuxtConfig({
       app_id: process.env.APP_ID,
     },
   },
-});
+  router: {
+    middleware: ['auth'],
+  },
+  globalMiddleware: [
+    async (to, from, next) => {
+      console.log('Global middleware')
+      next()
+    },
+  ],
+  auth: {
+    except: ['/vuelidate'],
+  },
+})

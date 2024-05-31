@@ -1,4 +1,6 @@
 <template>
+  <NuxtLoadingIndicator />
+  <VitePwaManifest />
   <CustomNavbar />
   <div class="mx-6 mt-[40px]">
     <slot></slot>

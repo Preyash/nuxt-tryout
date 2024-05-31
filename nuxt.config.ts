@@ -7,13 +7,28 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "@vee-validate/nuxt",
     "notivue/nuxt",
-    '@unocss/nuxt',
-    "vue3-carousel-nuxt"
+    "@unocss/nuxt",
+    "vue3-carousel-nuxt",
+    "@vite-pwa/nuxt",
   ],
+  pwa: {
+    manifest: {
+      name: "Nuxt App",
+      short_name: "Nuxt App",
+      description: "Up-to-date Sports News and Analysis App.",
+    },
+    workbox: {
+      navigateFallback: '/',
+    },
+    devOptions: {
+      enabled: true,
+      type: 'module',
+    }
+  },
   css: [
-    'notivue/notification.css',
-    'notivue/animations.css',
-    'notivue/notification-progress.css'
+    "notivue/notification.css",
+    "notivue/animations.css",
+    "notivue/notification-progress.css",
   ],
   unocss: {
     attributify: true,
@@ -21,19 +36,19 @@ export default defineNuxtConfig({
     components: true,
   },
   notivue: {
-    position: 'bottom-right',
+    position: "bottom-right",
     limit: 4,
     enqueue: true,
     avoidDuplicates: true,
     notifications: {
       global: {
-        duration: 2000
-      }
-    }
+        duration: 2000,
+      },
+    },
   },
   shadcn: {
-    prefix: '',
-    componentDir: './components/ui',
+    prefix: "",
+    componentDir: "./components/ui",
   },
   veeValidate: {
     autoImports: true,
@@ -44,15 +59,15 @@ export default defineNuxtConfig({
     },
   },
   router: {
-    middleware: ['auth'],
+    middleware: ["auth"],
   },
   globalMiddleware: [
     async (to, from, next) => {
-      console.log('Global middleware')
-      next()
+      console.log("Global middleware");
+      next();
     },
   ],
   auth: {
-    except: ['/vuelidate'],
+    except: ["/vuelidate"],
   },
-})
+});

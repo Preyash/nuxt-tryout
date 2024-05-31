@@ -18,7 +18,7 @@ const links = [
     <h1 className="flex items-center gap-2" href="#">
       <span className="text-lg font-semibold">LOGO</span>
     </h1>
-    <div className="hidden md:flex flex-row gap-4">
+    <div className="linksWrapper">
       <div v-for="link in links" :key="link.id">
         <NuxtLink
           className="text-lg font-medium hover:underline underline-offset-4"
@@ -49,3 +49,9 @@ const links = [
     </Sheet>
   </div>
 </template>
+<style scoped>
+.linksWrapper {
+  display: flex;
+  gap: 20px;
+}
+</style>

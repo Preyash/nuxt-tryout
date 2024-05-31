@@ -40,26 +40,31 @@ provide("refresh", refresh);
 
 <template>
   <div class="mx-auto max-w-4xl">
-    <main class="py-20 px-12 text-center">
-      <span text="blue 5xl hover:red" cursor="default">UnoCSS tryout</span>
-      <br />
-      <div op30 text-lg fw300 m1>The instant on-demand Atomic CSS engine.</div>
-      <div m2 flex justify-center text-2xl op30 hover="op80">
-        <a  
-          i-carbon-logo-github
-          text-inherit
-          href="https://github.com/unocss/unocss"
-          target="_blank"
-        ></a>
-      </div>
-    </main>
-
-    <div class="flex justify-center">
-      <Button @click="push.success('Something good has been pushed!')">
-        Test "Notivue" notification lib
-      </Button>
+    <div flex justify-center>
+      <CustomCollapsible>
+        <template #default>
+          <main text-center>
+            <span text="blue 5xl hover:red" cursor="default"
+              >UnoCSS tryout</span
+            >
+            <br />
+            <div op30 text-lg fw300 m1 flex items-center justify-center>
+              The instant on-demand Atomic CSS engine.
+              <div m2 flex justify-center text-2xl op30 hover="op80">
+                <a i-carbon-logo-github href="#" target="_blank"></a>
+              </div>
+            </div>
+          </main>
+          <br />
+          <div class="flex justify-center">
+            <Button @click="push.success('Something good has been pushed!')">
+              Test "Notivue" notification lib
+            </Button>
+          </div>
+          <br />
+        </template>
+      </CustomCollapsible>
     </div>
-
     <div
       v-if="data"
       class="mx-6 gap-10 flex flex-col justify-center items-center my-[30px]"

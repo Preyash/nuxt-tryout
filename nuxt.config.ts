@@ -1,7 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
+import process from "node:process";
+
+const sw = process.env.SW === "true";
+
 export default defineNuxtConfig({
   devtools: { enabled: false },
+  imports: {
+    autoImport: true,
+  },
   modules: [
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
@@ -48,12 +55,29 @@ export default defineNuxtConfig({
           type: "image/png",
         },
       ],
+      strategies: sw ? "injectManifest" : "generateSW",
+      srcDir: sw ? "service-worker" : undefined,
+      filename: sw ? "sw.ts" : undefined,
+      registerType: "autoUpdate",
     },
     workbox: {
       navigateFallback: "/",
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
+    injectManifest: {
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
+    client: {
+      installPrompt: true,
+      // you don't need to include this: only for testing purposes
+      // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600)
+      periodicSyncForUpdates: 3600,
     },
     devOptions: {
       enabled: true,
+      suppressWarnings: true,
+      navigateFallback: '/',
+      navigateFallbackAllowlist: [/^\/$/],
       type: "module",
     },
   },

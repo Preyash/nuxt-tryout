@@ -40,7 +40,7 @@ provide("refresh", refresh);
 
 <template>
   <div class="mx-auto max-w-4xl">
-    <div flex justify-center>
+    <!-- <div flex justify-center>
       <CustomCollapsible>
         <template #default>
           <main text-center>
@@ -64,7 +64,7 @@ provide("refresh", refresh);
           <br />
         </template>
       </CustomCollapsible>
-    </div>
+    </div> -->
     <div
       v-if="data"
       class="mx-6 gap-10 flex flex-col justify-center items-center my-[30px]"

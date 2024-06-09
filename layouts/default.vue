@@ -6,8 +6,8 @@ const [parent] = useAutoAnimate()
 </script>
 
 <template ref="parent">
-  <NuxtLoadingIndicator />
   <VitePwaManifest />
+  <NuxtLoadingIndicator />
   <CustomNavbar />
   <div class="mx-6 mt-[40px]">
     <slot></slot>

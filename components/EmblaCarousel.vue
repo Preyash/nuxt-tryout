@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import emblaCarouselVue from "embla-carousel-vue";
 
-const OPTIONS = { loop: true, slidesToScroll: 1,  };
+const OPTIONS = { loop: true, slidesToScroll: 1  };
 const SLIDE_COUNT = 5;
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 

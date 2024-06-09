@@ -1,4 +1,11 @@
-<template>
+<script setup>
+import { ref } from 'vue'
+import { useAutoAnimate } from '@formkit/auto-animate/vue'
+
+const [parent] = useAutoAnimate()
+</script>
+
+<template ref="parent">
   <NuxtLoadingIndicator />
   <VitePwaManifest />
   <CustomNavbar />

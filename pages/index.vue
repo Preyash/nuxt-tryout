@@ -33,11 +33,6 @@ const handleClick = (e) => {
 provide("open", open);
 provide("refresh", refresh);
 
-// definePageMeta({
-//   middleware: ["auth"],
-// });
-
-// console.log($pwa)
 </script>
 
 <template>

@@ -1,7 +1,8 @@
 import { reactive } from 'vue'
 
 export const store = reactive({
-  formData: {}
+  formData: {},
+  isLoggedIn: false
 })
 
 export function isObjectEmpty(obj) {

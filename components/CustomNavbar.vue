@@ -9,6 +9,12 @@ const links = [
   { id: 3, href: "/vee-validate", text: "Vee-Validate" },
   { id: 3, href: "/carousel", text: "Carousel" },
 ];
+
+const logout = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("role");
+  navigateTo('/login')
+};
 </script>
 
 <template>
@@ -27,6 +33,7 @@ const links = [
           {{ link.text }}
         </NuxtLink>
       </div>
+      <Button @click="logout">Logout</Button>
     </div>
     <Sheet>
       <SheetTrigger asChild>

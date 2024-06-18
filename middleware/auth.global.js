@@ -2,22 +2,20 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   let token = null;
   let role = null;
 
-  let publicPaths = ['/login', '/register', '/verify-password', '/forgot-password'];
+  const publicPaths = ['/login', '/register', '/verify-password', '/forgot-password', '/sign-up'];
 
   if (process.client) {
-    token = localStorage.token || null;
-    role = localStorage.userInfo || null;
-  }
+    token = localStorage.getItem('token') || null;
+    role = localStorage.getItem('role') || null;
 
-  if (token && publicPaths.includes(to.path)) {
-    let role = localStorage.role;
-    let path = role === 'admin' ? '/admin' : role == "lessee" ? '/lessee' : role == "enforcement" ? '/enforcement' : '/'
+    if (token && publicPaths.includes(to.path)) {
+      const path = role === 'admin' ? '/admin' : role === 'lessee' ? '/lessee' : role === 'enforcement' ? '/enforcement' : '/';
+      return navigateTo(path);
+    }
 
-    return navigateTo(path);
-  }
-
-  if (!token && to.path !== '/login') {
-    return navigateTo('/login');
+    if (!token && !publicPaths.includes(to.path)) {
+      return navigateTo('/login');
+    }
   }
 
   if (to.path.startsWith('/verify-password')) {

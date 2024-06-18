@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from 'vue'
-import { useAutoAnimate } from '@formkit/auto-animate/vue'
+import { ref, onMounted, watch } from "vue";
+import { useAutoAnimate } from "@formkit/auto-animate/vue";
 
-const [parent] = useAutoAnimate()
+const [parent] = useAutoAnimate();
 </script>
 
 <template ref="parent">
